@@ -1,0 +1,31 @@
+<% content_for :title, "Loan Applications" %>
+
+<div class="mb-4 text-right">
+  <%= link_to 'New Loan Application', new_loan_application_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded' %>
+</div>
+
+<div class="mb-4">
+  <table class="w-full border">
+    <thead>
+    <tr class="bg-gray-100 border-b text-center">
+      <th class="py-2 px-4 font-bold">Personal Code</th>
+      <th class="py-2 px-4 font-bold">Approved Amount</th>
+      <th class="py-2 px-4 font-bold">Loan Period</th>
+      <th class="py-2 px-4 font-bold" colspan="2"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @loan_applications.present? %>
+      <% @loan_applications.each do |loan_application| %>
+        <tr class="border-b">
+          <td class="py-2 px-4 text-center"><%= loan_application.personal_code %></td>
+          <td class="py-2 px-4 text-center"><%= loan_application.approved_amount %> €</td>
+          <td class="py-2 px-4 text-center"><%= loan_application.loan_period %> months</td>
+          <td class="py-2 px-4 text-center"><%= link_to 'Show', loan_application, class: 'text-blue-500 hover:underline' %></td>
+          <td class="py-2 px-4 text-center"><%= button_to "Delete", loan_application_path(loan_application), method: :delete, class: 'text-red-500 hover:underline' %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
